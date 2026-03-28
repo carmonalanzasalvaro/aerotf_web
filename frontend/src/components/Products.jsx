@@ -29,7 +29,7 @@ const areas = [
 ]
 
 function AreaCard({ icon, num, title, tags, desc, index }) {
-  const ref   = useRef(null)
+  const ref = useRef(null)
   const [vis, setVis] = useState(false)
 
   useEffect(() => {
@@ -80,6 +80,20 @@ function AreaCard({ icon, num, title, tags, desc, index }) {
 }
 
 export default function Products() {
+  const headerRef = useRef(null)
+  const [headerVis, setHeaderVis] = useState(false)
+
+  useEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setHeaderVis(true); obs.disconnect() } },
+      { threshold: 0.2 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <section id="actividad" className="py-24 relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -89,16 +103,75 @@ export default function Products() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase font-semibold mb-3"
-             style={{ color: 'var(--accent)' }}>
-            Líneas de actividad
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black text-gradient leading-tight max-w-2xl">
-            Especialización técnica en cada área de suministro
-          </h2>
+
+        {/* Header split: texto izquierda, imagen derecha */}
+        <div ref={headerRef}
+             className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+
+          {/* Texto */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={headerVis ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-xs tracking-widest uppercase font-semibold mb-3"
+               style={{ color: 'var(--accent)' }}>
+              Líneas de actividad
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-gradient leading-tight">
+              Especialización técnica en cada área de suministro
+            </h2>
+            <p className="mt-5 text-base leading-relaxed max-w-md"
+               style={{ color: 'var(--text-muted)' }}>
+              Operamos exclusivamente en el sector aeronáutico y de defensa,
+              con un catálogo técnico gestionado bajo los más exigentes
+              estándares de calidad y trazabilidad internacionales.
+            </p>
+          </motion.div>
+
+          {/* Imagen del producto */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={headerVis ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="relative flex items-center justify-center"
+          >
+            {/* Fondo neutro redondeado que contiene la imagen con su fondo gris */}
+            <div className="relative w-full glass rounded-2xl overflow-hidden p-6
+                            flex items-center justify-center"
+                 style={{ minHeight: '280px' }}>
+
+              {/* Gradiente sobre los bordes para integrar suavemente */}
+              <div className="absolute inset-0 rounded-2xl pointer-events-none z-10"
+                   style={{
+                     background: `radial-gradient(ellipse at center,
+                       transparent 55%,
+                       var(--bg-mid) 100%)`
+                   }} />
+
+              <img
+                src="/sec1.jpg"
+                alt="Componentes aeronáuticos"
+                className="relative z-0 w-full max-w-[460px] object-contain
+                           select-none mix-blend-multiply"
+                style={{
+                  filter: 'contrast(1.05) saturate(0.95)',
+                }}
+                draggable={false}
+              />
+            </div>
+
+            {/* Badge esquina inferior derecha */}
+            <div className="absolute bottom-3 right-3 glass rounded-lg px-3 py-2 z-20">
+              <p className="text-xs font-semibold tracking-wider uppercase"
+                 style={{ color: 'var(--accent)' }}>
+                CoC · FAA · EASA
+              </p>
+            </div>
+          </motion.div>
         </div>
 
+        {/* Cards de áreas */}
         <div className="grid md:grid-cols-2 gap-4">
           {areas.map((a, i) => <AreaCard key={a.title} {...a} index={i} />)}
         </div>
