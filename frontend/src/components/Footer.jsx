@@ -4,18 +4,34 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row
                       items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="w-6 h-6 rounded flex items-center justify-center
+          <span className="w-6 h-6 rounded-md flex items-center justify-center
                            text-white font-black text-xs"
-                style={{ background: 'var(--accent)' }}>AT</span>
+                style={{
+                  background: 'var(--accent)',
+                  fontFamily: "'Syne', system-ui, sans-serif",
+                }}>
+            AT
+          </span>
           <span className="text-sm tracking-widest uppercase"
-                style={{ color: 'var(--text-faint)' }}>
+                style={{
+                  color: 'var(--text-faint)',
+                  fontFamily: "'Syne', system-ui, sans-serif",
+                }}>
             Aero<span style={{ color: 'var(--accent)' }}>TF</span>
           </span>
         </div>
-        <p className="text-xs text-center" style={{ color: 'var(--text-ghost)' }}>
+        <p className="text-xs text-center"
+           style={{
+             color: 'var(--text-ghost)',
+             fontFamily: "'JetBrains Mono', monospace",
+           }}>
           © {new Date().getFullYear()} Aerospace Tools & Fasteners S.L. — Las Rozas, Madrid
         </p>
-        <p className="text-xs" style={{ color: 'var(--text-ghost)' }}>
+        <p className="text-xs"
+           style={{
+             color: 'var(--text-ghost)',
+             fontFamily: "'JetBrains Mono', monospace",
+           }}>
           ENAC · FAA · EASA
         </p>
       </div>

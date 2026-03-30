@@ -79,21 +79,20 @@ const badges = [
   { icon: Globe,       label: 'Alcance internacional' },
 ]
 
-// Temas oscuros vs claros
 const DARK_THEMES = ['dark', 'navy']
 
 export default function Hero() {
   const { theme } = useTheme()
   const isDark = DARK_THEMES.includes(theme)
 
-  const textMain    = isDark ? '#ffffff'                        : 'var(--text)'
-  const textMuted   = isDark ? 'rgba(255,255,255,0.55)'         : 'var(--text-muted)'
-  const textGhost   = isDark ? 'rgba(255,255,255,0.30)'         : 'var(--text-faint)'
-  const btnSecBg    = isDark ? 'rgba(255,255,255,0.07)'         : 'var(--glass-bg)'
+  const textMain    = isDark ? '#ffffff'                          : 'var(--text)'
+  const textMuted   = isDark ? 'rgba(255,255,255,0.55)'           : 'var(--text-muted)'
+  const textGhost   = isDark ? 'rgba(255,255,255,0.30)'           : 'var(--text-faint)'
+  const btnSecBg    = isDark ? 'rgba(255,255,255,0.07)'           : 'var(--glass-bg)'
   const btnSecBrd   = isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid var(--border-soft)'
-  const btnSecTxt   = isDark ? 'rgba(255,255,255,0.75)'         : 'var(--text-soft)'
-  const btnSecHover = isDark ? 'rgba(255,255,255,0.13)'         : 'var(--surface-hover)'
-  const scrollTxt   = isDark ? 'rgba(255,255,255,0.22)'         : 'var(--text-ghost)'
+  const btnSecTxt   = isDark ? 'rgba(255,255,255,0.75)'           : 'var(--text-soft)'
+  const btnSecHover = isDark ? 'rgba(255,255,255,0.13)'           : 'var(--surface-hover)'
+  const scrollTxt   = isDark ? 'rgba(255,255,255,0.22)'           : 'var(--text-ghost)'
 
   return (
     <section className="relative min-h-screen flex overflow-hidden">
@@ -113,11 +112,24 @@ export default function Hero() {
         />
         <div className="absolute bottom-0 left-0 right-0 h-48"
              style={{ background: 'linear-gradient(to bottom, transparent, var(--bg))' }} />
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-[100px]"
-             style={{ background: 'var(--accent-bg)', opacity: 0.4 }} />
+        {/* Orb grande mejorado */}
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none"
+             style={{
+               background: 'var(--accent-glow)',
+               filter: 'blur(120px)',
+               opacity: 0.7,
+               transform: 'translate(20%, 20%)',
+             }} />
+        {/* Segundo orb azul para tensión cromática */}
+        <div className="absolute top-0 right-1/3 w-[400px] h-[400px] rounded-full pointer-events-none"
+             style={{
+               background: isDark ? 'rgba(37,99,235,0.12)' : 'rgba(37,99,235,0.06)',
+               filter: 'blur(100px)',
+               transform: 'translateY(-30%)',
+             }} />
       </motion.div>
 
-      {/* PANEL IZQUIERDO — mask diagonal con fade, sin clipPath */}
+      {/* PANEL IZQUIERDO */}
       <div
         className="relative z-10 flex flex-col justify-center
                    w-full min-h-screen px-8 lg:px-16 pt-28 pb-24"
@@ -125,7 +137,6 @@ export default function Hero() {
           background: isDark
             ? 'linear-gradient(135deg, #04060f 0%, #07101c 100%)'
             : 'linear-gradient(135deg, var(--bg) 0%, var(--bg-mid) 100%)',
-          /* Sólido hasta ~38% del ancho, diagonal de fade entre 38-56% */
           maskImage:         'linear-gradient(108deg, black 0%, black 38%, transparent 56%)',
           WebkitMaskImage:   'linear-gradient(108deg, black 0%, black 38%, transparent 56%)',
         }}
@@ -152,6 +163,7 @@ export default function Hero() {
               background: 'var(--accent-bg)',
               border: '1px solid rgba(200,16,46,0.25)',
               color: 'var(--accent)',
+              fontFamily: "'JetBrains Mono', monospace",
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse"
@@ -162,8 +174,12 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight mb-6"
-            style={{ color: textMain }}
+            className="text-5xl md:text-6xl xl:text-7xl font-black leading-[0.92] tracking-tight mb-6"
+            style={{
+              color: textMain,
+              fontFamily: "'Syne', system-ui, sans-serif",
+              letterSpacing: '-0.02em',
+            }}
           >
             Especialistas<br />
             en componentes<br />
@@ -188,19 +204,41 @@ export default function Hero() {
             className="flex flex-wrap gap-4 mb-12"
           >
             <a href="#contacto"
-               className="px-7 py-3.5 text-white font-semibold rounded
+               className="px-7 py-3.5 text-white font-semibold
                           transition-all duration-200 tracking-wide uppercase text-sm"
-               style={{ background: 'var(--accent)' }}
-               onMouseEnter={e => e.currentTarget.style.background = 'var(--accent-hover)'}
-               onMouseLeave={e => e.currentTarget.style.background = 'var(--accent)'}
+               style={{
+                 background: 'var(--accent)',
+                 borderRadius: '8px',
+               }}
+               onMouseEnter={e => {
+                 e.currentTarget.style.background = 'var(--accent-hover)'
+                 e.currentTarget.style.transform = 'translateY(-1px)'
+                 e.currentTarget.style.boxShadow = '0 6px 20px var(--accent-glow)'
+               }}
+               onMouseLeave={e => {
+                 e.currentTarget.style.background = 'var(--accent)'
+                 e.currentTarget.style.transform = 'translateY(0)'
+                 e.currentTarget.style.boxShadow = 'none'
+               }}
             >
               Contacto
             </a>
             <a href="#actividad"
-               className="px-7 py-3.5 font-medium rounded transition-all text-sm uppercase tracking-wide"
-               style={{ background: btnSecBg, border: btnSecBrd, color: btnSecTxt }}
-               onMouseEnter={e => e.currentTarget.style.background = btnSecHover}
-               onMouseLeave={e => e.currentTarget.style.background = btnSecBg}
+               className="px-7 py-3.5 font-medium transition-all text-sm uppercase tracking-wide"
+               style={{
+                 background: btnSecBg,
+                 border: btnSecBrd,
+                 color: btnSecTxt,
+                 borderRadius: '8px',
+               }}
+               onMouseEnter={e => {
+                 e.currentTarget.style.background = btnSecHover
+                 e.currentTarget.style.transform = 'translateY(-1px)'
+               }}
+               onMouseLeave={e => {
+                 e.currentTarget.style.background = btnSecBg
+                 e.currentTarget.style.transform = 'translateY(0)'
+               }}
             >
               Nuestra actividad
             </a>
@@ -214,7 +252,10 @@ export default function Hero() {
             {badges.map(({ icon: Icon, label }) => (
               <div key={label}
                    className="flex items-center gap-2 text-xs tracking-wider uppercase"
-                   style={{ color: textGhost }}>
+                   style={{
+                     color: textGhost,
+                     fontFamily: "'JetBrains Mono', monospace",
+                   }}>
                 <Icon size={13} style={{ color: 'var(--accent)' }} />
                 {label}
               </div>
@@ -236,7 +277,7 @@ export default function Hero() {
         }}
       >
         <p className="text-xs tracking-widest uppercase font-semibold mb-0.5"
-           style={{ color: 'var(--accent)' }}>
+           style={{ color: 'var(--accent)', fontFamily: "'JetBrains Mono', monospace" }}>
           Sector aeroespacial
         </p>
         <p className="text-xs"
@@ -251,7 +292,8 @@ export default function Hero() {
         transition={{ delay: 1.3 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-xs tracking-widest uppercase" style={{ color: scrollTxt }}>
+        <span className="text-xs tracking-widest uppercase"
+              style={{ color: scrollTxt, fontFamily: "'JetBrains Mono', monospace" }}>
           Scroll
         </span>
         <motion.div

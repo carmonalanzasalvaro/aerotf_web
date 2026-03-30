@@ -21,7 +21,7 @@ export default function App() {
           <MapSection />
         </main>
         <Footer />
-        <ThemePicker />
+        {import.meta.env.DEV && <ThemePicker />}
       </div>
     </ThemeProvider>
   )

@@ -27,19 +27,25 @@ export default function Navbar() {
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-5'}`}
       style={{
         background: scrolled
-          ? 'rgba(4,6,15,0.88)'
+          ? 'rgba(4,6,15,0.90)'
           : 'linear-gradient(to bottom, rgba(4,6,15,0.65), transparent)',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : 'none',
       }}
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
         <a href="#" className="flex items-center gap-3">
-          <span className="w-8 h-8 rounded flex items-center justify-center
+          <span className="w-8 h-8 rounded-lg flex items-center justify-center
                            text-white font-black text-sm"
-                style={{ background: '#c8102e' }}>AT</span>
-          <span className="font-semibold tracking-widest text-sm uppercase text-white">
+                style={{
+                  background: '#c8102e',
+                  fontFamily: "'Syne', system-ui, sans-serif",
+                }}>
+            AT
+          </span>
+          <span className="font-semibold tracking-widest text-sm uppercase text-white"
+                style={{ fontFamily: "'Syne', system-ui, sans-serif" }}>
             Aero<span style={{ color: '#c8102e' }}>TF</span>
           </span>
         </a>
@@ -48,11 +54,14 @@ export default function Navbar() {
           {links.map(l => (
             <li key={l.label}>
               <a href={l.href}
-                 className="text-sm tracking-wider uppercase font-medium relative group
+                 className="text-xs tracking-widest uppercase font-medium relative group
                             transition-colors duration-200"
-                 style={{ color: 'rgba(255,255,255,0.60)' }}
+                 style={{
+                   color: 'rgba(255,255,255,0.55)',
+                   fontFamily: "'JetBrains Mono', monospace",
+                 }}
                  onMouseEnter={e => e.target.style.color = '#ffffff'}
-                 onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.60)'}
+                 onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.55)'}
               >
                 {l.label}
                 <span className="absolute -bottom-0.5 left-0 w-0 h-px transition-all
@@ -64,18 +73,24 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-5">
           <a href="tel:+34916388377"
-             className="flex items-center gap-1.5 text-sm transition-colors duration-200"
-             style={{ color: 'rgba(255,255,255,0.38)' }}
+             className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+             style={{
+               color: 'rgba(255,255,255,0.35)',
+               fontFamily: "'JetBrains Mono', monospace",
+             }}
              onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
-             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.38)'}>
-            <Phone size={13} />
+             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>
+            <Phone size={12} />
             +34 916 388 377
           </a>
           <a href="mailto:info@aerotf.com"
-             className="text-sm transition-colors duration-200"
-             style={{ color: 'rgba(255,255,255,0.38)' }}
+             className="text-xs transition-colors duration-200"
+             style={{
+               color: 'rgba(255,255,255,0.35)',
+               fontFamily: "'JetBrains Mono', monospace",
+             }}
              onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
-             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.38)'}>
+             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>
             info@aerotf.com
           </a>
         </div>
@@ -93,30 +108,37 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden px-6 pb-6 pt-4"
             style={{
-              background: 'rgba(4,6,15,0.95)',
-              backdropFilter: 'blur(16px)',
+              background: 'rgba(4,6,15,0.96)',
+              backdropFilter: 'blur(20px)',
               borderTop: '1px solid rgba(255,255,255,0.07)',
             }}
           >
             {links.map(l => (
               <a key={l.label} href={l.href} onClick={() => setOpen(false)}
-                 className="block py-3 tracking-wider uppercase text-sm transition-colors"
+                 className="block py-3 tracking-widest uppercase text-xs transition-colors"
                  style={{
-                   color: 'rgba(255,255,255,0.60)',
-                   borderBottom: '1px solid rgba(255,255,255,0.07)'
+                   color: 'rgba(255,255,255,0.55)',
+                   borderBottom: '1px solid rgba(255,255,255,0.07)',
+                   fontFamily: "'JetBrains Mono', monospace",
                  }}>
                 {l.label}
               </a>
             ))}
             <div className="mt-4 space-y-2">
               <a href="tel:+34916388377"
-                 className="block text-sm text-center py-2"
-                 style={{ color: 'rgba(255,255,255,0.35)' }}>
+                 className="block text-xs text-center py-2"
+                 style={{
+                   color: 'rgba(255,255,255,0.35)',
+                   fontFamily: "'JetBrains Mono', monospace",
+                 }}>
                 +34 916 388 377
               </a>
               <a href="mailto:info@aerotf.com"
-                 className="block text-sm text-center py-2"
-                 style={{ color: 'rgba(255,255,255,0.35)' }}>
+                 className="block text-xs text-center py-2"
+                 style={{
+                   color: 'rgba(255,255,255,0.35)',
+                   fontFamily: "'JetBrains Mono', monospace",
+                 }}>
                 info@aerotf.com
               </a>
             </div>

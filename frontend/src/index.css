@@ -1,24 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @layer base {
   :root {
     --bg:            #04060f;
-    --bg-mid:        #08101a;
-    --glass-bg:      rgba(255,255,255,0.03);
-    --glass-border:  rgba(255,255,255,0.07);
-    --border-faint:  rgba(255,255,255,0.05);
-    --border-soft:   rgba(255,255,255,0.10);
+    --bg-mid:        #070e18;
+    --bg-alt:        #050b14;
+    --glass-bg:      rgba(255,255,255,0.035);
+    --glass-border:  rgba(255,255,255,0.08);
+    --border-faint:  rgba(255,255,255,0.06);
+    --border-soft:   rgba(255,255,255,0.12);
     --text:          #f0f4f8;
-    --text-muted:    rgba(240,244,248,0.50);
-    --text-soft:     rgba(240,244,248,0.65);
+    --text-muted:    rgba(240,244,248,0.52);
+    --text-soft:     rgba(240,244,248,0.68);
     --text-faint:    rgba(240,244,248,0.40);
-    --text-ghost:    rgba(240,244,248,0.20);
-    --surface-hover: rgba(255,255,255,0.05);
+    --text-ghost:    rgba(240,244,248,0.22);
+    --surface-hover: rgba(255,255,255,0.07);
     --accent:        #c8102e;
     --accent-hover:  #b91c1c;
-    --accent-bg:     rgba(200,16,46,0.07);
+    --accent-bg:     rgba(200,16,46,0.10);
+    --accent-glow:   rgba(200,16,46,0.18);
     --grad-from:     #ffffff;
     --grad-to:       #94a3b8;
+    --noise-opacity: 0.028;
   }
 
   html { scroll-behavior: smooth; }
@@ -26,9 +30,26 @@
   body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* Textura de ruido sutil sobre toda la página */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Syne', system-ui, sans-serif;
   }
 
   ::-webkit-scrollbar { width: 4px; }
@@ -39,16 +60,25 @@
 @layer utilities {
   .glass {
     background:      var(--glass-bg);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px);
     border:          1px solid var(--glass-border);
-    transition: background 0.4s ease, border-color 0.4s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
+
+  .glass:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px var(--border-faint);
+  }
+
   .text-gradient {
     background: linear-gradient(135deg, var(--grad-from) 0%, var(--grad-to) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
   .accent-line::after {
     content: '';
     display: block;
@@ -56,5 +86,28 @@
     height: 3px;
     background: var(--accent);
     margin-top: 1rem;
+  }
+
+  /* Alternancia de fondo entre secciones */
+  .section-alt {
+    background-color: var(--bg-mid);
+    border-top: 1px solid var(--border-faint);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  /* Glow de acento mejorado */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+
+  .font-display {
+    font-family: 'Syne', system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
   }
 }

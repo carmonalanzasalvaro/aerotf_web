@@ -27,12 +27,12 @@ export default function Quality() {
   }, [])
 
   return (
-    <section id="calidad" className="py-24" ref={ref}>
+    <section id="calidad" className="py-24 section-alt" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="rounded-2xl overflow-hidden grid lg:grid-cols-2 shadow-lg"
              style={{ border: '1px solid var(--glass-border)' }}>
 
-          {/* Izquierda — fondo de card blanco/glass */}
+          {/* Izquierda */}
           <div className="p-12 lg:p-16"
                style={{ background: 'var(--glass-bg)' }}>
             <motion.div
@@ -41,10 +41,17 @@ export default function Quality() {
               transition={{ duration: 0.7 }}
             >
               <p className="text-xs tracking-widest uppercase font-semibold mb-4"
-                 style={{ color: 'var(--accent)' }}>
+                 style={{
+                   color: 'var(--accent)',
+                   fontFamily: "'JetBrains Mono', monospace",
+                 }}>
                 Calidad & Certificaciones
               </p>
-              <h2 className="text-3xl md:text-4xl font-black text-gradient leading-tight mb-6 accent-line">
+              <h2 className="text-3xl md:text-4xl font-black text-gradient leading-tight mb-6 accent-line"
+                  style={{
+                    fontFamily: "'Syne', system-ui, sans-serif",
+                    letterSpacing: '-0.025em',
+                  }}>
                 Trazabilidad total en cada operación
               </h2>
               <p className="leading-relaxed mb-8" style={{ color: 'var(--text-muted)' }}>
@@ -70,17 +77,29 @@ export default function Quality() {
             </motion.div>
           </div>
 
-          {/* Derecha — siempre oscuro, contraste fuerte */}
+          {/* Derecha — siempre oscura */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={vis ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="p-12 lg:p-16 flex flex-col justify-center gap-10 relative overflow-hidden"
-            style={{ background: '#111827' }}
+            style={{ background: '#0d1117' }}
           >
-            {/* Glow decorativo sutil */}
-            <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-[80px] opacity-20 pointer-events-none"
-                 style={{ background: '#c8102e' }} />
+            {/* Glow decorativo */}
+            <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
+                 style={{
+                   background: 'var(--accent)',
+                   filter: 'blur(80px)',
+                   opacity: 0.12,
+                   transform: 'translate(30%, -30%)',
+                 }} />
+            {/* Segundo orb */}
+            <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none"
+                 style={{
+                   background: 'rgba(37,99,235,0.15)',
+                   filter: 'blur(60px)',
+                   transform: 'translate(-20%, 20%)',
+                 }} />
 
             {[
               ['100%', 'Piezas con Certificate of Conformance'],
@@ -88,14 +107,25 @@ export default function Quality() {
               ['24h',  'Plazo máximo de respuesta técnica'],
             ].map(([val, label]) => (
               <div key={label} className="relative">
-                <p className="text-5xl font-black mb-1.5 text-white">{val}</p>
+                <p className="font-black mb-1.5 text-white"
+                   style={{
+                     fontFamily: "'Syne', system-ui, sans-serif",
+                     fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                     letterSpacing: '-0.03em',
+                     lineHeight: 1,
+                   }}>
+                  {val}
+                </p>
                 <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{label}</p>
               </div>
             ))}
 
             {/* Línea decorativa vertical izquierda */}
-            <div className="absolute left-0 top-8 bottom-8 w-px opacity-20"
-                 style={{ background: '#c8102e' }} />
+            <div className="absolute left-0 top-8 bottom-8 w-px"
+                 style={{
+                   background: 'linear-gradient(to bottom, transparent, var(--accent), transparent)',
+                   opacity: 0.4,
+                 }} />
           </motion.div>
 
         </div>
