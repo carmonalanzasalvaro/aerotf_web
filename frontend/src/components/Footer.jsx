@@ -8,14 +8,14 @@ export default function Footer() {
                            text-white font-black text-xs"
                 style={{
                   background: 'var(--accent)',
-                  fontFamily: "'Syne', system-ui, sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}>
             AT
           </span>
           <span className="text-sm tracking-widest uppercase"
                 style={{
                   color: 'var(--text-faint)',
-                  fontFamily: "'Syne', system-ui, sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}>
             Aero<span style={{ color: 'var(--accent)' }}>TF</span>
           </span>
@@ -23,14 +23,14 @@ export default function Footer() {
         <p className="text-xs text-center"
            style={{
              color: 'var(--text-ghost)',
-             fontFamily: "'JetBrains Mono', monospace",
+             fontFamily: "var(--font-mono)",
            }}>
           © {new Date().getFullYear()} Aerospace Tools & Fasteners S.L. — Las Rozas, Madrid
         </p>
         <p className="text-xs"
            style={{
              color: 'var(--text-ghost)',
-             fontFamily: "'JetBrains Mono', monospace",
+             fontFamily: "var(--font-mono)",
            }}>
           ENAC · FAA · EASA
         </p>

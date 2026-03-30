@@ -40,12 +40,12 @@ export default function Navbar() {
                            text-white font-black text-sm"
                 style={{
                   background: '#c8102e',
-                  fontFamily: "'Syne', system-ui, sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}>
             AT
           </span>
           <span className="font-semibold tracking-widest text-sm uppercase text-white"
-                style={{ fontFamily: "'Syne', system-ui, sans-serif" }}>
+                style={{ fontFamily: "var(--font-display)" }}>
             Aero<span style={{ color: '#c8102e' }}>TF</span>
           </span>
         </a>
@@ -58,7 +58,7 @@ export default function Navbar() {
                             transition-colors duration-200"
                  style={{
                    color: 'rgba(255,255,255,0.55)',
-                   fontFamily: "'JetBrains Mono', monospace",
+                   fontFamily: "var(--font-mono)",
                  }}
                  onMouseEnter={e => e.target.style.color = '#ffffff'}
                  onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.55)'}
@@ -76,7 +76,7 @@ export default function Navbar() {
              className="flex items-center gap-1.5 text-xs transition-colors duration-200"
              style={{
                color: 'rgba(255,255,255,0.35)',
-               fontFamily: "'JetBrains Mono', monospace",
+               fontFamily: "var(--font-mono)",
              }}
              onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>
@@ -87,7 +87,7 @@ export default function Navbar() {
              className="text-xs transition-colors duration-200"
              style={{
                color: 'rgba(255,255,255,0.35)',
-               fontFamily: "'JetBrains Mono', monospace",
+               fontFamily: "var(--font-mono)",
              }}
              onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.35)'}>
@@ -119,7 +119,7 @@ export default function Navbar() {
                  style={{
                    color: 'rgba(255,255,255,0.55)',
                    borderBottom: '1px solid rgba(255,255,255,0.07)',
-                   fontFamily: "'JetBrains Mono', monospace",
+                   fontFamily: "var(--font-mono)",
                  }}>
                 {l.label}
               </a>
@@ -129,7 +129,7 @@ export default function Navbar() {
                  className="block text-xs text-center py-2"
                  style={{
                    color: 'rgba(255,255,255,0.35)',
-                   fontFamily: "'JetBrains Mono', monospace",
+                   fontFamily: "var(--font-mono)",
                  }}>
                 +34 916 388 377
               </a>
@@ -137,7 +137,7 @@ export default function Navbar() {
                  className="block text-xs text-center py-2"
                  style={{
                    color: 'rgba(255,255,255,0.35)',
-                   fontFamily: "'JetBrains Mono', monospace",
+                   fontFamily: "var(--font-mono)",
                  }}>
                 info@aerotf.com
               </a>

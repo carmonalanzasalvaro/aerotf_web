@@ -43,13 +43,13 @@ export default function Quality() {
               <p className="text-xs tracking-widest uppercase font-semibold mb-4"
                  style={{
                    color: 'var(--accent)',
-                   fontFamily: "'JetBrains Mono', monospace",
+                   fontFamily: "var(--font-mono)",
                  }}>
                 Calidad & Certificaciones
               </p>
               <h2 className="text-3xl md:text-4xl font-black text-gradient leading-tight mb-6 accent-line"
                   style={{
-                    fontFamily: "'Syne', system-ui, sans-serif",
+                    fontFamily: "var(--font-display)",
                     letterSpacing: '-0.025em',
                   }}>
                 Trazabilidad total en cada operación
@@ -109,7 +109,7 @@ export default function Quality() {
               <div key={label} className="relative">
                 <p className="font-black mb-1.5 text-white"
                    style={{
-                     fontFamily: "'Syne', system-ui, sans-serif",
+                     fontFamily: "var(--font-display)",
                      fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
                      letterSpacing: '-0.03em',
                      lineHeight: 1,

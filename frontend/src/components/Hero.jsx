@@ -163,7 +163,7 @@ export default function Hero() {
               background: 'var(--accent-bg)',
               border: '1px solid rgba(200,16,46,0.25)',
               color: 'var(--accent)',
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--font-mono)",
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse"
@@ -177,7 +177,7 @@ export default function Hero() {
             className="text-5xl md:text-6xl xl:text-7xl font-black leading-[0.92] tracking-tight mb-6"
             style={{
               color: textMain,
-              fontFamily: "'Syne', system-ui, sans-serif",
+              fontFamily: "var(--font-display)",
               letterSpacing: '-0.02em',
             }}
           >
@@ -254,7 +254,7 @@ export default function Hero() {
                    className="flex items-center gap-2 text-xs tracking-wider uppercase"
                    style={{
                      color: textGhost,
-                     fontFamily: "'JetBrains Mono', monospace",
+                     fontFamily: "var(--font-mono)",
                    }}>
                 <Icon size={13} style={{ color: 'var(--accent)' }} />
                 {label}
@@ -277,7 +277,7 @@ export default function Hero() {
         }}
       >
         <p className="text-xs tracking-widest uppercase font-semibold mb-0.5"
-           style={{ color: 'var(--accent)', fontFamily: "'JetBrains Mono', monospace" }}>
+           style={{ color: 'var(--accent)', fontFamily: "var(--font-mono)" }}>
           Sector aeroespacial
         </p>
         <p className="text-xs"
@@ -293,7 +293,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
         <span className="text-xs tracking-widest uppercase"
-              style={{ color: scrollTxt, fontFamily: "'JetBrains Mono', monospace" }}>
+              style={{ color: scrollTxt, fontFamily: "var(--font-mono)" }}>
           Scroll
         </span>
         <motion.div

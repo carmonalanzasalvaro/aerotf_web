@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;500&display=swap");
 @import "tailwindcss";
 
 @layer base {
@@ -23,6 +23,9 @@
     --grad-from:     #ffffff;
     --grad-to:       #94a3b8;
     --noise-opacity: 0.028;
+    --font-body:     'Public Sans', system-ui, sans-serif;
+    --font-display:  'Syne', system-ui, sans-serif;
+    --font-mono:     'JetBrains Mono', monospace;
   }
 
   html { scroll-behavior: smooth; }
@@ -30,7 +33,7 @@
   body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
@@ -49,7 +52,7 @@
   }
 
   h1, h2, h3 {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-display);
   }
 
   ::-webkit-scrollbar { width: 4px; }
@@ -104,10 +107,10 @@
   }
 
   .font-display {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-display);
   }
 
   .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
   }
 }

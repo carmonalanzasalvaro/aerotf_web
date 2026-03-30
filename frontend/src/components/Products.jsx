@@ -54,7 +54,7 @@ function AreaCard({ icon: Icon, num, title, tags, desc, index }) {
       {/* Número como marca de agua de fondo */}
       <div className="absolute -bottom-4 -right-2 select-none pointer-events-none"
            style={{
-             fontFamily: "'Syne', system-ui, sans-serif",
+             fontFamily: "var(--font-display)",
              fontSize: '7rem',
              fontWeight: 900,
              color: 'var(--accent)',
@@ -77,7 +77,7 @@ function AreaCard({ icon: Icon, num, title, tags, desc, index }) {
         <span className="text-xs tracking-widest uppercase"
               style={{
                 color: 'var(--text-ghost)',
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--font-mono)",
               }}>
           {num}
         </span>
@@ -86,7 +86,7 @@ function AreaCard({ icon: Icon, num, title, tags, desc, index }) {
       <h3 className="text-xl font-bold mb-3"
           style={{
             color: 'var(--text)',
-            fontFamily: "'Syne', system-ui, sans-serif",
+            fontFamily: "var(--font-display)",
           }}>
         {title}
       </h3>
@@ -100,7 +100,7 @@ function AreaCard({ icon: Icon, num, title, tags, desc, index }) {
                   background: 'var(--surface-hover)',
                   color: 'var(--text-faint)',
                   border: '1px solid var(--border-faint)',
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--font-mono)",
                 }}>
             {tag}
           </span>
@@ -159,13 +159,13 @@ export default function Products() {
             <p className="text-xs tracking-widest uppercase font-semibold mb-3"
                style={{
                  color: 'var(--accent)',
-                 fontFamily: "'JetBrains Mono', monospace",
+                 fontFamily: "var(--font-mono)",
                }}>
               Líneas de actividad
             </p>
             <h2 className="text-4xl md:text-5xl font-black text-gradient leading-tight"
                 style={{
-                  fontFamily: "'Syne', system-ui, sans-serif",
+                  fontFamily: "var(--font-display)",
                   letterSpacing: '-0.03em',
                 }}>
               Especialización técnica en cada área de suministro
@@ -211,7 +211,7 @@ export default function Products() {
               <p className="text-xs font-semibold tracking-wider uppercase"
                  style={{
                    color: 'var(--accent)',
-                   fontFamily: "'JetBrains Mono', monospace",
+                   fontFamily: "var(--font-mono)",
                  }}>
                 CoC · FAA · EASA
               </p>

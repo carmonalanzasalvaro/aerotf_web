@@ -47,7 +47,7 @@ function Card({ value, suffix, label, desc, index }) {
       {/* Número grande como marca de agua detrás */}
       <div className="absolute -right-3 -top-2 select-none pointer-events-none"
            style={{
-             fontFamily: "'Syne', system-ui, sans-serif",
+             fontFamily: "var(--font-display)",
              fontSize: '8rem',
              fontWeight: 900,
              color: 'var(--accent)',
@@ -61,7 +61,7 @@ function Card({ value, suffix, label, desc, index }) {
       <p className="text-6xl md:text-7xl font-black tracking-tight mb-3"
          style={{
            color: 'var(--text)',
-           fontFamily: "'Syne', system-ui, sans-serif",
+           fontFamily: "var(--font-display)",
            letterSpacing: '-0.03em',
          }}>
         {count}<span style={{ color: 'var(--accent)' }}>{suffix}</span>
@@ -80,13 +80,13 @@ export default function Stats() {
           <p className="text-xs tracking-widest uppercase font-semibold mb-4"
              style={{
                color: 'var(--accent)',
-               fontFamily: "'JetBrains Mono', monospace",
+               fontFamily: "var(--font-mono)",
              }}>
             Stats & hechos
           </p>
           <h2 className="text-4xl md:text-5xl font-black text-gradient leading-tight max-w-xl"
               style={{
-                fontFamily: "'Syne', system-ui, sans-serif",
+                fontFamily: "var(--font-display)",
                 letterSpacing: '-0.03em',
               }}>
             Los datos que avalan nuestra precisión

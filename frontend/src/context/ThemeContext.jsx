@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 export const themes = {
   dark: {
@@ -111,12 +111,54 @@ export const themes = {
   }
 }
 
+export const fonts = {
+  public: {
+    name: 'Public',
+    emoji: '◼︎',
+    preview: ['Public Sans', 'Syne', 'JetBrains Mono'],
+    vars: {
+      '--font-body':    "'Public Sans', system-ui, sans-serif",
+      '--font-display': "'Syne', system-ui, sans-serif",
+      '--font-mono':    "'JetBrains Mono', monospace",
+    },
+  },
+  barlow: {
+    name: 'Barlow',
+    emoji: '▤',
+    preview: ['Barlow', 'Barlow Condensed', 'JetBrains Mono'],
+    vars: {
+      '--font-body':    "'Barlow', system-ui, sans-serif",
+      '--font-display': "'Barlow Condensed', system-ui, sans-serif",
+      '--font-mono':    "'JetBrains Mono', monospace",
+    },
+  },
+  plex: {
+    name: 'Plex',
+    emoji: '▥',
+    preview: ['IBM Plex Sans', 'IBM Plex Sans Condensed', 'IBM Plex Mono'],
+    vars: {
+      '--font-body':    "'IBM Plex Sans', system-ui, sans-serif",
+      '--font-display': "'IBM Plex Sans Condensed', system-ui, sans-serif",
+      '--font-mono':    "'IBM Plex Mono', monospace",
+    },
+  },
+  source: {
+    name: 'Source',
+    emoji: '▦',
+    preview: ['Source Sans 3', 'Source Sans 3', 'Source Code Pro'],
+    vars: {
+      '--font-body':    "'Source Sans 3', system-ui, sans-serif",
+      '--font-display': "'Source Sans 3', system-ui, sans-serif",
+      '--font-mono':    "'Source Code Pro', monospace",
+    },
+  },
+}
+
 const ThemeCtx = createContext(null)
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem('aerotf-theme') || 'dark'
-  )
+  const [theme, setTheme] = useState(() => localStorage.getItem('aerotf-theme') || 'dark')
+  const [font, setFont] = useState(() => localStorage.getItem('aerotf-font') || 'public')
 
   useEffect(() => {
     const root = document.documentElement
@@ -125,8 +167,15 @@ export function ThemeProvider({ children }) {
     localStorage.setItem('aerotf-theme', theme)
   }, [theme])
 
+  useEffect(() => {
+    const root = document.documentElement
+    const vars = fonts[font]?.vars ?? fonts.public.vars
+    Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v))
+    localStorage.setItem('aerotf-font', font)
+  }, [font])
+
   return (
-    <ThemeCtx.Provider value={{ theme, setTheme }}>
+    <ThemeCtx.Provider value={{ theme, setTheme, font, setFont }}>
       {children}
     </ThemeCtx.Provider>
   )

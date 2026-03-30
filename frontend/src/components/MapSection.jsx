@@ -42,13 +42,13 @@ export default function MapSection() {
           <p className="text-xs tracking-widest uppercase font-semibold mb-3"
              style={{
                color: 'var(--accent)',
-               fontFamily: "'JetBrains Mono', monospace",
+               fontFamily: "var(--font-mono)",
              }}>
             Ubicación & Contacto
           </p>
           <h2 className="text-4xl md:text-5xl font-black text-gradient leading-tight"
               style={{
-                fontFamily: "'Syne', system-ui, sans-serif",
+                fontFamily: "var(--font-display)",
                 letterSpacing: '-0.03em',
               }}>
             Dónde encontrarnos
@@ -95,7 +95,7 @@ export default function MapSection() {
                 <p className="text-xs tracking-widest uppercase mb-0.5"
                    style={{
                      color: 'var(--text-ghost)',
-                     fontFamily: "'JetBrains Mono', monospace",
+                     fontFamily: "var(--font-mono)",
                    }}>
                   {label}
                 </p>
