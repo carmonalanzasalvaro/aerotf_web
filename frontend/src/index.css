@@ -22,6 +22,7 @@
     --card-shadow: 0 18px 42px -30px rgba(39,54,74,0.18);
     --accent: #88b8c4;
     --accent-hover: #74a7b6;
+    --accent-strong: #6f9fb2;
     --accent-bg: rgba(136,184,196,0.18);
     --accent-glow: rgba(136,184,196,0.18);
     --accent-2: #bda6ce;
@@ -379,6 +380,93 @@
     opacity: 0.28;
   }
 
+
+  .activity-slider-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0.15rem 0 0.35rem;
+  }
+
+  .activity-slider-item + .activity-slider-item {
+    border-top: 1px solid color-mix(in srgb, var(--border-faint) 74%, white);
+    padding-top: 1.35rem;
+  }
+
+  .activity-slider-title {
+    max-width: 100%;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.55vw, 3.55rem);
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -0.048em;
+  }
+
+  .activity-preview-shell {
+    position: relative;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, white 84%, var(--accent-bg) 16%) 0%, color-mix(in srgb, white 96%, var(--accent-bg) 4%) 100%);
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border-soft));
+    box-shadow: 0 28px 54px -42px rgba(34,48,67,0.16);
+  }
+
+  .activity-preview-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, color-mix(in srgb, var(--accent) 10%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--border-faint) 40%, transparent) 1px, transparent 1px);
+    background-size: 36px 36px;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+
+  .activity-preview-frame {
+    position: relative;
+    padding: 1.1rem;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--accent-bg) 26%, white) 0%, color-mix(in srgb, var(--accent-2-bg) 16%, white) 100%);
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border-faint));
+  }
+
+  .activity-preview-frame::after {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    height: 5rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(39,54,74,0.10) 100%);
+    pointer-events: none;
+    opacity: 0.22;
+  }
+
+  .activity-preview-figure {
+    position: relative;
+    background: color-mix(in srgb, var(--bg) 84%, white);
+    isolation: isolate;
+  }
+
+  .activity-preview-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, var(--border-faint));
+    pointer-events: none;
+  }
+
+  .activity-preview-details {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(180deg, color-mix(in srgb, white 86%, var(--accent-bg) 14%) 0%, color-mix(in srgb, white 96%, var(--accent-bg) 4%) 100%);
+  }
+
+  @media (min-width: 1024px) {
+    .activity-preview-shell {
+      margin-top: 0.45rem;
+    }
+  }
   @media (max-width: 768px) {
     .canvas-fly-image {
       width: 160vw;
@@ -393,3 +481,252 @@
     }
   }
 }
+
+@layer utilities {
+  .activity-section-kicker {
+    margin-bottom: 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--accent) 74%, var(--accent-2) 26%);
+    font-family: var(--font-mono);
+  }
+
+  .activity-section-title {
+    max-width: 60rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4.6vw, 4rem);
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+    color: var(--text);
+    font-weight: 900;
+  }
+
+  .activity-section-copy {
+    margin-top: 1.25rem;
+    max-width: 46rem;
+    font-size: 1.06rem;
+    line-height: 1.95;
+    color: var(--text-muted);
+  }
+
+  .activity-box-slider {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .activity-box-heading {
+    max-width: 54rem;
+  }
+
+  .activity-box-eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--accent) 78%, var(--accent-2) 22%);
+    font-family: var(--font-mono);
+  }
+
+  .activity-box-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.05rem, 3.8vw, 3.35rem);
+    line-height: 0.94;
+    letter-spacing: -0.048em;
+    color: color-mix(in srgb, var(--text) 80%, var(--accent) 20%);
+    font-weight: 900;
+    text-wrap: balance;
+  }
+
+  .activity-box-shell {
+    --activity-shell-slant: 72px;
+    --activity-panel-slant: 72px;
+    --activity-panel-overlap: calc(var(--activity-panel-slant) - 2px);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border-faint));
+    background: linear-gradient(180deg, color-mix(in srgb, white 62%, var(--accent-bg) 38%) 0%, color-mix(in srgb, white 74%, var(--accent-2-bg) 26%) 100%);
+    box-shadow: 0 22px 54px -40px rgba(31, 48, 72, 0.16);
+    clip-path: polygon(var(--activity-shell-slant) 0, 100% 0, calc(100% - var(--activity-shell-slant)) 100%, 0 100%);
+    -webkit-clip-path: polygon(var(--activity-shell-slant) 0, 100% 0, calc(100% - var(--activity-shell-slant)) 100%, 0 100%);
+    isolation: isolate;
+  }
+
+  .activity-box-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--accent) 10%, transparent) 1px, transparent 1px);
+    background-size: 44px 44px;
+    opacity: 0.14;
+    z-index: 0;
+  }
+
+  .activity-box-track {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0;
+    min-height: 28rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .activity-box-panel {
+    position: relative;
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    isolation: isolate;
+    margin-left: calc(var(--activity-panel-overlap) * -1);
+    clip-path: polygon(var(--activity-panel-slant) 0, 100% 0, calc(100% - var(--activity-panel-slant)) 100%, 0 100%);
+    -webkit-clip-path: polygon(var(--activity-panel-slant) 0, 100% 0, calc(100% - var(--activity-panel-slant)) 100%, 0 100%);
+  }
+
+  .activity-box-panel:first-child {
+    margin-left: 0;
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--activity-panel-slant)) 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - var(--activity-panel-slant)) 100%, 0 100%);
+  }
+
+  .activity-box-panel:last-child {
+    clip-path: polygon(var(--activity-panel-slant) 0, 100% 0, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(var(--activity-panel-slant) 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .activity-box-panel::after {
+    content: '';
+    position: absolute;
+    top: -8%;
+    right: calc(var(--activity-panel-slant) * -0.5);
+    width: 2px;
+    height: 116%;
+    background: color-mix(in srgb, var(--accent) 36%, white 64%);
+    transform: skewX(-11deg);
+    opacity: 0.84;
+    z-index: 3;
+  }
+
+  .activity-box-panel:last-child::after {
+    display: none;
+  }
+
+  .activity-box-panel:focus-visible {
+    box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+
+  .activity-box-panel-image-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--bg) 64%, var(--accent-bg) 36%);
+  }
+
+  .activity-box-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.94) contrast(1.01) brightness(0.985);
+    transition: transform 340ms ease, filter 340ms ease, opacity 240ms ease;
+    opacity: 0.84;
+    transform: scale(1.03);
+  }
+
+  .activity-box-panel.is-active .activity-box-image {
+    opacity: 1;
+    filter: saturate(1.02) contrast(1.03) brightness(1);
+    transform: scale(1.08);
+  }
+
+  .activity-box-image-wash {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 36%, rgba(255,255,255,0.1) 100%),
+      linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.01) 34%, rgba(255,255,255,0.16) 100%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .activity-box-footer {
+    border-top: 1px solid color-mix(in srgb, var(--accent) 12%, var(--border-faint));
+    padding-top: 1.05rem;
+  }
+
+  .activity-box-description {
+    max-width: 58rem;
+    font-size: 1.02rem;
+    line-height: 1.95;
+    color: color-mix(in srgb, var(--text-soft) 88%, var(--accent) 12%);
+  }
+
+  .activity-box-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .activity-box-tag {
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border-faint));
+    background: color-mix(in srgb, white 74%, var(--accent-bg) 26%);
+    padding: 0.52rem 0.86rem;
+    font-size: 0.68rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--text-soft) 84%, var(--accent) 16%);
+  }
+
+  @media (max-width: 1024px) {
+    .activity-box-track {
+      min-height: 23rem;
+    }
+
+    .activity-box-shell {
+      --activity-shell-slant: 56px;
+      --activity-panel-slant: 56px;
+      --activity-panel-overlap: calc(var(--activity-panel-slant) - 2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .activity-section-copy {
+      font-size: 0.98rem;
+      line-height: 1.85;
+    }
+
+    .activity-box-title {
+      font-size: clamp(1.8rem, 8vw, 2.4rem);
+    }
+
+    .activity-box-track {
+      min-height: 14.5rem;
+    }
+
+    .activity-box-shell {
+      --activity-shell-slant: 28px;
+      --activity-panel-slant: 28px;
+      --activity-panel-overlap: calc(var(--activity-panel-slant) - 1px);
+    }
+
+    .activity-box-description {
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+  }
+}
+

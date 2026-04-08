@@ -42,21 +42,7 @@ function Card({ value, suffix, label, desc, index }) {
       transition={{ duration: 0.6, delay: index * 0.08 }}
       className="h-full"
     >
-      <SpotlightCard customSize className="h-full min-h-[210px] p-7 md:p-8" glowColor={index % 2 === 0 ? 'accent' : 'secondary'}>
-        <div
-          className="absolute right-5 top-4 select-none pointer-events-none"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '5rem',
-            fontWeight: 900,
-            color: 'var(--text-ghost)',
-            opacity: 0.38,
-            lineHeight: 1,
-          }}
-        >
-          {String(index + 1).padStart(2, '0')}
-        </div>
-
+      <SpotlightCard customSize className="h-full min-h-[198px] p-7 md:p-8" glowColor={index % 2 === 0 ? 'accent' : 'secondary'}>
         <p
           className="mb-3 text-5xl font-black tracking-[-0.04em] md:text-6xl"
           style={{ color: 'var(--text)', fontFamily: 'var(--font-display)' }}
@@ -77,13 +63,13 @@ function Card({ value, suffix, label, desc, index }) {
 
 export default function Stats() {
   return (
-    <section className="py-28 section-alt">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 max-w-3xl">
+    <section className="py-24 section-alt md:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-14 max-w-3xl md:mb-16">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em]" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>
             Stats & hechos
           </p>
-          <h2 className="text-4xl md:text-5xl font-black leading-tight" style={{ color: 'var(--text)', fontFamily: 'var(--font-display)', letterSpacing: '-0.03em' }}>
+          <h2 className="text-4xl font-black leading-tight md:text-5xl" style={{ color: 'var(--text)', fontFamily: 'var(--font-display)', letterSpacing: '-0.03em' }}>
             Los datos que avalan nuestra precisión
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
