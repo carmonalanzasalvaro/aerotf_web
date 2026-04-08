@@ -639,15 +639,15 @@
     height: 100%;
     object-fit: cover;
     filter: saturate(0.94) contrast(1.01) brightness(0.985);
-    transition: transform 340ms ease, filter 340ms ease, opacity 240ms ease;
+    transition: filter 340ms ease, opacity 240ms ease;
     opacity: 0.84;
-    transform: scale(1.03);
+    transform: none;
   }
 
   .activity-box-panel.is-active .activity-box-image {
     opacity: 1;
     filter: saturate(1.02) contrast(1.03) brightness(1);
-    transform: scale(1.08);
+    transform: none;
   }
 
   .activity-box-image-wash {
