@@ -16,47 +16,45 @@ export default function ThemePicker() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="rounded-2xl overflow-hidden shadow-2xl"
+            className="rounded-[1.5rem] overflow-hidden shadow-2xl"
             style={{
               background: 'var(--glass-bg)',
               backdropFilter: 'blur(20px)',
               border: '1px solid var(--glass-border)',
-              minWidth: '280px',
+              minWidth: '300px',
             }}
           >
             <div className="px-4 pt-4 pb-2">
-              <p style={{ color: 'var(--text-ghost)' }} className="text-[10px] tracking-widest uppercase font-semibold mb-3">
+              <p className="mb-3 text-[10px] tracking-[0.22em] uppercase font-semibold" style={{ color: 'var(--text-ghost)', fontFamily: 'var(--font-mono)' }}>
                 Tema
               </p>
 
-              <div className="space-y-1 mb-4">
+              <div className="space-y-1.5 mb-4">
                 {Object.entries(themes).map(([key, t]) => (
                   <button
                     key={key}
                     onClick={() => setTheme(key)}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150 text-left"
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 text-left"
                     style={{ background: theme === key ? 'var(--accent-bg)' : 'transparent' }}
                   >
-                    <div className="flex gap-0.5 shrink-0">
+                    <div className="flex gap-0.5 shrink-0 overflow-hidden rounded-md">
                       {t.preview.map((c, i) => (
-                        <div key={i} style={{ backgroundColor: c }} className="w-3 h-5 first:rounded-l last:rounded-r" />
+                        <div key={i} style={{ backgroundColor: c }} className="h-6 w-4" />
                       ))}
                     </div>
 
-                    <span className="text-sm font-medium" style={{ color: theme === key ? 'var(--accent)' : 'var(--text-soft)' }}>
+                    <span className="text-sm font-medium" style={{ color: theme === key ? 'var(--text)' : 'var(--text-soft)' }}>
                       {t.emoji} {t.name}
                     </span>
 
-                    {theme === key && (
-                      <div className="ml-auto w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
-                    )}
+                    {theme === key && <div className="ml-auto h-1.5 w-1.5 rounded-full" style={{ background: 'var(--accent)' }} />}
                   </button>
                 ))}
               </div>
 
               <div className="flex items-center gap-2 mb-3" style={{ color: 'var(--text-ghost)' }}>
                 <Type size={12} />
-                <p className="text-[10px] tracking-widest uppercase font-semibold">Fuente</p>
+                <p className="text-[10px] tracking-[0.22em] uppercase font-semibold" style={{ fontFamily: 'var(--font-mono)' }}>Fuente</p>
               </div>
 
               <div className="space-y-1">
@@ -64,7 +62,7 @@ export default function ThemePicker() {
                   <button
                     key={key}
                     onClick={() => setFont(key)}
-                    className="w-full rounded-lg px-3 py-3 transition-all duration-150 text-left"
+                    className="w-full rounded-xl px-3 py-3 transition-all duration-150 text-left"
                     style={{ background: font === key ? 'var(--accent-bg)' : 'transparent' }}
                   >
                     <div className="flex items-center gap-3">
@@ -73,19 +71,12 @@ export default function ThemePicker() {
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium" style={{ color: font === key ? 'var(--accent)' : 'var(--text-soft)' }}>
+                          <span className="text-sm font-medium" style={{ color: font === key ? 'var(--text)' : 'var(--text-soft)' }}>
                             {f.name}
                           </span>
                           {font === key && <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />}
                         </div>
-                        <p
-                          className="text-xs mt-1 truncate"
-                          style={{
-                            color: 'var(--text-ghost)',
-                            fontFamily: f.vars['--font-display'],
-                            letterSpacing: '0.01em',
-                          }}
-                        >
+                        <p className="text-xs mt-1 truncate" style={{ color: 'var(--text-ghost)', fontFamily: f.vars['--font-display'], letterSpacing: '0.01em' }}>
                           AeroTF · Precisión certificada
                         </p>
                       </div>
@@ -96,7 +87,7 @@ export default function ThemePicker() {
             </div>
 
             <div className="px-4 pb-3 pt-1">
-              <p style={{ color: 'var(--text-ghost)' }} className="text-[9px] tracking-widest uppercase text-center">
+              <p className="text-[9px] tracking-[0.22em] uppercase text-center" style={{ color: 'var(--text-ghost)', fontFamily: 'var(--font-mono)' }}>
                 AeroTF Dev Tools
               </p>
             </div>
@@ -108,7 +99,7 @@ export default function ThemePicker() {
         onClick={() => setOpen(!open)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg text-sm font-bold tracking-widest uppercase transition-colors duration-200"
+        className="flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg text-sm font-bold tracking-[0.18em] uppercase"
         style={{
           background: open ? 'var(--accent)' : 'var(--glass-bg)',
           backdropFilter: 'blur(12px)',

@@ -17,117 +17,92 @@ export default function Quality() {
 
   useEffect(() => {
     const el = ref.current
-    if (!el) return
+    if (!el) return undefined
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect() } },
-      { threshold: 0.2 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVis(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.2 },
     )
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
 
+  const metrics = [
+    ['100%', 'Piezas con Certificate of Conformance'],
+    ['0', 'Tolerancia a componentes sin trazabilidad documentada'],
+    ['24h', 'Plazo máximo de respuesta técnica'],
+  ]
+
   return (
     <section id="calidad" className="py-24 section-alt" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="rounded-2xl overflow-hidden grid lg:grid-cols-2 shadow-lg"
-             style={{ border: '1px solid var(--glass-border)' }}>
-
-          {/* Izquierda */}
-          <div className="p-12 lg:p-16"
-               style={{ background: 'var(--glass-bg)' }}>
+        <div className="overflow-hidden rounded-[2rem] grid lg:grid-cols-2" style={{ border: '1px solid var(--card-stroke)', boxShadow: 'var(--card-shadow)' }}>
+          <div className="p-10 lg:p-14" style={{ background: 'linear-gradient(180deg, var(--card-bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 100%)' }}>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={vis ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7 }}
             >
-              <p className="text-xs tracking-widest uppercase font-semibold mb-4"
-                 style={{
-                   color: 'var(--accent)',
-                   fontFamily: "var(--font-mono)",
-                 }}>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em]" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>
                 Calidad & Certificaciones
               </p>
-              <h2 className="text-3xl md:text-4xl font-black text-gradient leading-tight mb-6 accent-line"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    letterSpacing: '-0.025em',
-                  }}>
+              <h2 className="accent-line mb-6 text-3xl md:text-4xl font-black leading-tight" style={{ color: 'var(--text)', fontFamily: 'var(--font-display)', letterSpacing: '-0.025em' }}>
                 Trazabilidad total en cada operación
               </h2>
-              <p className="leading-relaxed mb-8" style={{ color: 'var(--text-muted)' }}>
-                AeroTF opera bajo un sistema de gestión de calidad riguroso que garantiza
-                la autenticidad, trazabilidad y conformidad de cada componente gestionado.
-                Todos los suministros se realizan a través de cadenas de distribución
-                autorizadas, con documentación técnica completa hasta el fabricante original.
+              <p className="mb-8 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                AeroTF opera bajo un sistema de gestión de calidad riguroso que garantiza la autenticidad,
+                trazabilidad y conformidad de cada componente gestionado. Todos los suministros se realizan
+                a través de cadenas de distribución autorizadas, con documentación técnica completa hasta el
+                fabricante original.
               </p>
-              <ul className="space-y-3">
-                {certs.map((c, i) => (
-                  <motion.li key={c}
+              <ul className="space-y-3.5">
+                {certs.map((cert, i) => (
+                  <motion.li
+                    key={cert}
                     initial={{ opacity: 0, x: -20 }}
                     animate={vis ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
+                    transition={{ duration: 0.5, delay: 0.08 + i * 0.06 }}
                     className="flex items-center gap-3 text-sm"
                     style={{ color: 'var(--text-soft)' }}
                   >
                     <CheckCircle2 size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-                    {c}
+                    {cert}
                   </motion.li>
                 ))}
               </ul>
             </motion.div>
           </div>
 
-          {/* Derecha — siempre oscura */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={vis ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="p-12 lg:p-16 flex flex-col justify-center gap-10 relative overflow-hidden"
-            style={{ background: '#0d1117' }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="relative overflow-hidden p-10 lg:p-14"
+            style={{
+              background: 'linear-gradient(135deg, var(--panel-dark) 0%, var(--panel-dark-2) 100%)',
+              color: 'white',
+            }}
           >
-            {/* Glow decorativo */}
-            <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
-                 style={{
-                   background: 'var(--accent)',
-                   filter: 'blur(80px)',
-                   opacity: 0.12,
-                   transform: 'translate(30%, -30%)',
-                 }} />
-            {/* Segundo orb */}
-            <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none"
-                 style={{
-                   background: 'rgba(37,99,235,0.15)',
-                   filter: 'blur(60px)',
-                   transform: 'translate(-20%, 20%)',
-                 }} />
+            <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at top right, var(--accent-glow), transparent 34%)' }} />
+            <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at bottom left, var(--accent-2-glow), transparent 32%)' }} />
 
-            {[
-              ['100%', 'Piezas con Certificate of Conformance'],
-              ['0',    'Tolerancia a componentes sin trazabilidad documentada'],
-              ['24h',  'Plazo máximo de respuesta técnica'],
-            ].map(([val, label]) => (
-              <div key={label} className="relative">
-                <p className="font-black mb-1.5 text-white"
-                   style={{
-                     fontFamily: "var(--font-display)",
-                     fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                     letterSpacing: '-0.03em',
-                     lineHeight: 1,
-                   }}>
-                  {val}
-                </p>
-                <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{label}</p>
-              </div>
-            ))}
-
-            {/* Línea decorativa vertical izquierda */}
-            <div className="absolute left-0 top-8 bottom-8 w-px"
-                 style={{
-                   background: 'linear-gradient(to bottom, transparent, var(--accent), transparent)',
-                   opacity: 0.4,
-                 }} />
+            <div className="relative z-10 grid gap-8">
+              {metrics.map(([value, label]) => (
+                <div key={label}>
+                  <p className="mb-1.5 text-[clamp(2.5rem,5vw,3.5rem)] font-black leading-none tracking-[-0.04em]" style={{ fontFamily: 'var(--font-display)' }}>
+                    {value}
+                  </p>
+                  <p className="max-w-xs text-sm" style={{ color: 'rgba(255,255,255,0.68)' }}>
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </motion.div>
-
         </div>
       </div>
     </section>

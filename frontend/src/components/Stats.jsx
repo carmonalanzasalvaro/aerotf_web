@@ -1,73 +1,76 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import SpotlightCard from './ui/SpotlightCard'
 
 function useCounter(target, duration = 2000, active = false) {
   const [count, setCount] = useState(0)
+
   useEffect(() => {
-    if (!active) return
-    let v = 0
-    const step  = target / (duration / 16)
+    if (!active) return undefined
+
+    let value = 0
+    const step = target / (duration / 16)
     const timer = setInterval(() => {
-      v = Math.min(v + step, target); setCount(Math.floor(v))
-      if (v >= target) clearInterval(timer)
+      value = Math.min(value + step, target)
+      setCount(Math.floor(value))
+      if (value >= target) clearInterval(timer)
     }, 16)
+
     return () => clearInterval(timer)
   }, [active, target, duration])
+
   return count
 }
 
 const data = [
-  { value: 20,   suffix: '+', label: 'Años de experiencia',      desc: 'En el mercado aeronáutico global'       },
-  { value: 5000, suffix: '+', label: 'Referencias en stock',     desc: 'Fasteners, rodamientos, herramientas'   },
-  { value: 48,   suffix: 'h', label: 'Entrega urgente',          desc: 'Para pedidos certificados prioritarios' },
-  { value: 100,  suffix: '%', label: 'Trazabilidad garantizada', desc: 'Documentación FAA / EASA completa'      },
+  { value: 20, suffix: '+', label: 'Años de experiencia', desc: 'En el mercado aeronáutico global' },
+  { value: 5000, suffix: '+', label: 'Referencias en stock', desc: 'Fasteners, rodamientos, herramientas' },
+  { value: 48, suffix: 'h', label: 'Entrega urgente', desc: 'Para pedidos certificados prioritarios' },
+  { value: 100, suffix: '%', label: 'Trazabilidad garantizada', desc: 'Documentación FAA / EASA completa' },
 ]
 
 function Card({ value, suffix, label, desc, index }) {
-  const ref    = useRef(null)
+  const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const count  = useCounter(value, 2200, inView)
+  const count = useCounter(value, 2200, inView)
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 36 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="glass rounded-xl p-8 relative overflow-hidden cursor-default"
-      style={{ '--card-index': index }}
+      transition={{ duration: 0.6, delay: index * 0.08 }}
+      className="h-full"
     >
-      {/* Línea acento izquierda — siempre visible, más dramática */}
-      <div className="absolute top-0 left-0 w-[3px] h-full"
-           style={{
-             background: 'linear-gradient(to bottom, transparent, var(--accent) 30%, var(--accent) 70%, transparent)',
-             opacity: 0.6,
-           }} />
+      <SpotlightCard customSize className="h-full min-h-[210px] p-7 md:p-8" glowColor={index % 2 === 0 ? 'accent' : 'secondary'}>
+        <div
+          className="absolute right-5 top-4 select-none pointer-events-none"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '5rem',
+            fontWeight: 900,
+            color: 'var(--text-ghost)',
+            opacity: 0.38,
+            lineHeight: 1,
+          }}
+        >
+          {String(index + 1).padStart(2, '0')}
+        </div>
 
-      {/* Número grande como marca de agua detrás */}
-      <div className="absolute -right-3 -top-2 select-none pointer-events-none"
-           style={{
-             fontFamily: "var(--font-display)",
-             fontSize: '8rem',
-             fontWeight: 900,
-             color: 'var(--accent)',
-             opacity: 0.04,
-             lineHeight: 1,
-             userSelect: 'none',
-           }}>
-        {String(index + 1).padStart(2, '0')}
-      </div>
-
-      <p className="text-6xl md:text-7xl font-black tracking-tight mb-3"
-         style={{
-           color: 'var(--text)',
-           fontFamily: "var(--font-display)",
-           letterSpacing: '-0.03em',
-         }}>
-        {count}<span style={{ color: 'var(--accent)' }}>{suffix}</span>
-      </p>
-      <p className="font-semibold mb-1.5 text-base" style={{ color: 'var(--text)' }}>{label}</p>
-      <p className="text-sm leading-relaxed" style={{ color: 'var(--text-faint)' }}>{desc}</p>
+        <p
+          className="mb-3 text-5xl font-black tracking-[-0.04em] md:text-6xl"
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-display)' }}
+        >
+          {count}
+          <span style={{ color: index % 2 === 0 ? 'var(--accent)' : 'var(--accent-2)' }}>{suffix}</span>
+        </p>
+        <p className="mb-1.5 text-base font-semibold" style={{ color: 'var(--text)' }}>
+          {label}
+        </p>
+        <p className="max-w-[18rem] text-sm leading-relaxed" style={{ color: 'var(--text-faint)' }}>
+          {desc}
+        </p>
+      </SpotlightCard>
     </motion.div>
   )
 }
@@ -76,24 +79,23 @@ export default function Stats() {
   return (
     <section className="py-28 section-alt">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-20">
-          <p className="text-xs tracking-widest uppercase font-semibold mb-4"
-             style={{
-               color: 'var(--accent)',
-               fontFamily: "var(--font-mono)",
-             }}>
+        <div className="mb-16 max-w-3xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em]" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>
             Stats & hechos
           </p>
-          <h2 className="text-4xl md:text-5xl font-black text-gradient leading-tight max-w-xl"
-              style={{
-                fontFamily: "var(--font-display)",
-                letterSpacing: '-0.03em',
-              }}>
+          <h2 className="text-4xl md:text-5xl font-black leading-tight" style={{ color: 'var(--text)', fontFamily: 'var(--font-display)', letterSpacing: '-0.03em' }}>
             Los datos que avalan nuestra precisión
           </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            Indicadores clave de capacidad, disponibilidad y respuesta para programas civiles,
+            MRO y defensa, presentados con una jerarquía visual más sobria y técnica.
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {data.map((s, i) => <Card key={s.label} {...s} index={i} />)}
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {data.map((item, index) => (
+            <Card key={item.label} {...item} index={index} />
+          ))}
         </div>
       </div>
     </section>
